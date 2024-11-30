@@ -10,16 +10,14 @@ import RootProvider from './providers/root';
 
 function App() {
   return (
-    <BrowserRouter>
-      <RootProvider>
-        <Navbar />
-        <main className='flex h-full flex-col items-center justify-center'>
-          <GithubCorner title='Get started on GitHub' url='github.com/ogunakar9' />
-          <Counter />
-        </main>
-        <Footer />
-      </RootProvider>
-    </BrowserRouter>
+    <RootProvider>
+      <Navbar />
+      <main className='flex h-full flex-col items-center justify-center'>
+        <GithubCorner title='Get started on GitHub' url='github.com/ogunakar9' />
+        <Counter />
+      </main>
+      <Footer />
+    </RootProvider>
   );
 }
 
