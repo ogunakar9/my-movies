@@ -46,6 +46,9 @@ export interface IFilmData {
   Poster: string;
 }
 
+export interface DataTableProperties {
+  dataProp: IFilmData[];
+}
 export interface IQueryParameters {
   apikey: string | undefined;
   page: number;

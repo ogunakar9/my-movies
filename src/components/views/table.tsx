@@ -1,5 +1,6 @@
 import React from 'react';
 
+import type { IFilmData } from '@/lib/types/film';
 import type { ColumnDef } from '@tanstack/react-table';
 
 import {
@@ -19,17 +20,9 @@ import {
   TableHeader,
   TableRow
 } from '@/components/ui/table';
+import { type DataTableProperties } from '@/lib/types/film';
 
-// Define the film data structure
-export interface IFilmData {
-  Title: string;
-  Year: string;
-  imdbID: string;
-  Type: string;
-  Poster: string;
-}
-
-const DataTable = ({ dataProp }: { dataProp: IFilmData[] }) => {
+const DataTable: React.FC<DataTableProperties> = ({ dataProp }) => {
   // Define the columns dynamically based on the IFilmData structure
   const columns: ColumnDef<IFilmData>[] = [
     {
