@@ -22,8 +22,30 @@ import {
 } from '@/components/ui/table';
 import { type DataTableProperties } from '@/lib/types/film';
 
+interface PaginationState {
+  pageIndex: number;
+  pageSize: number;
+}
+
 const DataTable: React.FC<DataTableProperties> = ({ dataProp }) => {
-  // Define the columns dynamically based on the IFilmData structure
+  const [filterValue, setFilterValue] = React.useState('');
+  const [paginationState, setPaginationState] = React.useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10
+  });
+
+  // Updated handlePaginationChange function to handle both value and updater function
+  const handlePaginationChange: (
+    updaterOrValue: PaginationState | ((old: PaginationState) => PaginationState)
+  ) => void = (updaterOrValue) => {
+    setPaginationState((previous) => {
+      if (typeof updaterOrValue === 'function') {
+        return updaterOrValue(previous);
+      }
+      return updaterOrValue;
+    });
+  };
+
   const columns: ColumnDef<IFilmData>[] = [
     {
       accessorKey: 'Poster',
@@ -37,8 +59,12 @@ const DataTable: React.FC<DataTableProperties> = ({ dataProp }) => {
       header: 'Title'
     },
     {
+      accessorKey: 'imdbID',
+      header: 'IMDB ID'
+    },
+    {
       accessorKey: 'Year',
-      header: 'Year'
+      header: 'Release Date'
     },
     {
       accessorKey: 'Type',
@@ -46,15 +72,17 @@ const DataTable: React.FC<DataTableProperties> = ({ dataProp }) => {
     }
   ];
 
-  const [filterValue, setFilterValue] = React.useState('');
   const table = useReactTable({
     data: dataProp,
     columns,
+    state: {
+      globalFilter: filterValue,
+      pagination: paginationState
+    },
+    onPaginationChange: handlePaginationChange,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    state: {
-      globalFilter: filterValue
-    }
+    manualPagination: true
   });
 
   return (
