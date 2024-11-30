@@ -1,10 +1,9 @@
 import React from 'react';
 
+import Footer from '@/components/footer';
+import Navbar from '@/components/navbar';
 import Home from '@/pages/home';
-
-import Footer from './components/footer';
-import Navbar from './components/navbar';
-import RootProvider from './providers/root';
+import RootProvider from '@/providers/root';
 
 function App() {
   return (
