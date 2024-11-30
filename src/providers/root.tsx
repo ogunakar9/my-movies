@@ -4,8 +4,8 @@ import type { PropsWithChildren } from 'react';
 
 import { Provider as ReduxProvider } from 'react-redux';
 
-import { store } from '../app/store';
-import ThemeProvider from './theme';
+import { store } from '@/app/store';
+import ThemeProvider from '@/providers/theme';
 
 type TRootProvider = PropsWithChildren;
 

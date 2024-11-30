@@ -1,6 +1,6 @@
 const config = {
   metadata: {
-    title: 'Vite React.js TypeScript & Shadcn/ui — Template',
+    title: 'Movie Viewer',
     description:
       'A React.js Web App, SPA, website or landing page with TypeScript, Shadcn/ui, TailwindCSS, Vite, SWC, ESLint, Husky ',
     keywords:

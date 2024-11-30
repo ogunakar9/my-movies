@@ -1,10 +1,8 @@
 import React from 'react';
 
-import { BrowserRouter } from 'react-router-dom';
+import Home from '@/pages/home';
 
-import Counter from './components/counter';
 import Footer from './components/footer';
-import GithubCorner from './components/github-corner';
 import Navbar from './components/navbar';
 import RootProvider from './providers/root';
 
@@ -13,8 +11,7 @@ function App() {
     <RootProvider>
       <Navbar />
       <main className='flex h-full flex-col items-center justify-center'>
-        <GithubCorner title='Get started on GitHub' url='github.com/ogunakar9' />
-        <Counter />
+        <Home />
       </main>
       <Footer />
     </RootProvider>

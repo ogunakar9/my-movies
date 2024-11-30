@@ -6,11 +6,6 @@ import { Card, CardContent, CardHeader } from './ui/card';
 export default function Counter() {
   const [count, setCount] = useState(0);
 
-  const asdf = {
-    test: 'test',
-
-    bro: 'bro'
-  };
   return (
     <Card className='w-72 border border-border bg-secondary shadow-md'>
       <CardHeader>
