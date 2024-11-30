@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-import EStorageKeys from '../constants/keys';
+import EStorageKeys from '../lib/constants/keys';
 
 type Theme = 'dark' | 'light' | 'system';
 
