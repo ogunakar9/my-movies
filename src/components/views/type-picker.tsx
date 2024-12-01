@@ -19,16 +19,16 @@ const TypePicker: React.FC = () => {
   const dispatch = useAppDispatch();
   const filters = useAppSelector(selectFilters);
 
-  const selectedType = filters.type ?? ''; // Single selected type
+  const selectedType = filters.type ?? '';
 
   const handleTypeSelect = (type: string) => {
-    dispatch(updateFilters({ type, page: 1 })); // Update selected type
+    dispatch(updateFilters({ type, page: 1 }));
     setIsOpen(false);
     void dispatch(getFilmsWithParameters());
   };
 
   const handleClear = () => {
-    dispatch(updateFilters({ type: '', page: 1 })); // Clear selected type
+    dispatch(updateFilters({ type: '', page: 1 }));
     setIsOpen(false);
     void dispatch(getFilmsWithParameters());
   };
@@ -39,7 +39,9 @@ const TypePicker: React.FC = () => {
         <Popover open={isOpen} onOpenChange={(event) => setIsOpen(event)}>
           <PopoverTrigger asChild>
             <Button variant='outline'>
-              {selectedType ? `Selected: ${selectedType}` : 'Select Type'}
+              {selectedType
+                ? `Selected: ${selectedType.charAt(0).toUpperCase() + selectedType.slice(1)}`
+                : 'Select Type'}
             </Button>
           </PopoverTrigger>
           <PopoverContent className='w-48 p-2'>
