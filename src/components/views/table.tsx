@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import type { ColumnDef } from '@tanstack/react-table';
 
 import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
+import { debounce } from 'lodash';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
@@ -62,6 +63,25 @@ const DataTable: React.FC = () => {
     dispatch(updateFilters({ page: filters.page + increment }));
     void dispatch(getFilmsWithParameters());
   };
+
+  const debouncedSearch = useMemo(
+    () =>
+      debounce((value: string) => {
+        dispatch(updateFilters({ s: value, page: 1 }));
+        void dispatch(getFilmsWithParameters());
+      }, 1000),
+    [dispatch]
+  );
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    debouncedSearch(event.target.value);
+  };
+
+  useEffect(() => {
+    return () => {
+      debouncedSearch.cancel();
+    };
+  }, [debouncedSearch]);
 
   useEffect(() => {
     setData([
@@ -151,13 +171,7 @@ const DataTable: React.FC = () => {
   return (
     <div className='w-full'>
       <div className='flex items-center py-4'>
-        <Input
-          placeholder='Filter by title...'
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            dispatch(updateFilters({ s: event.target.value, page: 1 }))
-          }
-          className='max-w-sm'
-        />
+        <Input placeholder='Filter by title...' onChange={handleChange} className='max-w-sm' />
       </div>
       <div className='rounded-md border'>
         <Table>
@@ -195,7 +209,6 @@ const DataTable: React.FC = () => {
                 </TableCell>
               </TableRow>
             )}
-
             {filmData.Search?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
