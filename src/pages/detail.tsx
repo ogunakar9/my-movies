@@ -2,17 +2,24 @@ import React, { useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
 
+import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Rating } from '@/components/ui/rating';
 import { Separator } from '@/components/ui/separator';
 import api from '@/features/film/api';
+import { selectError, selectFilmData, selectStatus } from '@/features/film/slice';
 import { type IFilmDetailData } from '@/lib/types/film';
 
 const Detail: React.FC<IFilmDetailData> = () => {
   const { imdbID } = useParams();
   const [data, setData] = React.useState<IFilmDetailData[]>([]);
   console.log('imdbID', imdbID);
+
+  const dispatch = useAppDispatch();
+  const filmData = useAppSelector(selectFilmData);
+  const status = useAppSelector(selectStatus);
+  const error = useAppSelector(selectError);
 
   const movie = {
     Title: 'Pokémon 3 the Movie: Spell of the Unown',

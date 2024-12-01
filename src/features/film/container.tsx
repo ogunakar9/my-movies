@@ -8,7 +8,7 @@ import {
   // getFilmsWithParams as getFilmsWithParameters,
   selectFilters,
   updatePage
-} from './film-slice';
+} from './slice';
 
 const Films = () => {
   const filters = useAppSelector(selectFilters);

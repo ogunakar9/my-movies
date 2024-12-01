@@ -10,7 +10,7 @@ import {
   selectError,
   selectFilmData,
   selectStatus
-} from '@/features/film/film-slice';
+} from '@/features/film/slice';
 import { type IFilmData, type IFilmDataState } from '@/lib/types/film';
 
 const Home = () => {

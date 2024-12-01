@@ -2,7 +2,7 @@ import type { Action, ThunkAction } from '@reduxjs/toolkit';
 
 import { configureStore } from '@reduxjs/toolkit';
 
-import filmReducer from '../features/film/film-slice';
+import filmReducer from '../features/film/slice';
 
 export const store = configureStore({
   reducer: {
