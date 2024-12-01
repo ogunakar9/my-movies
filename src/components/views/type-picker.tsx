@@ -1,73 +1,77 @@
 import React, { useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
-import { Checkbox } from '@/components/ui/checkbox';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { getFilmsWithParameters, selectFilters, updateFilters } from '@/features/film/slice';
 
-const TypeCheckboxes: React.FC = () => {
+const TypePicker: React.FC = () => {
+  const [searchValue, setSearchValue] = useState('');
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const types = ['movie', 'series', 'episode'];
+  const filteredTypes = types.filter((type) =>
+    type.toLowerCase().includes(searchValue.toLowerCase())
+  );
+
   const dispatch = useAppDispatch();
   const filters = useAppSelector(selectFilters);
-  const [selectedTypes, setSelectedTypes] = useState<string[]>(['movie', 'series', 'episode']);
 
-  const handleCheckboxChange = (value: string) => {
-    setSelectedTypes((previous) => {
-      const newSelections = previous.includes(value)
-        ? previous.filter((type) => type !== value)
-        : [...previous, value];
+  const selectedType = filters.type ?? ''; // Single selected type
 
-      dispatch(
-        updateFilters({
-          type: newSelections.join(','),
-          page: 1
-        })
-      );
-
-      return newSelections;
-    });
-
+  const handleTypeSelect = (type: string) => {
+    dispatch(updateFilters({ type, page: 1 })); // Update selected type
+    setIsOpen(false);
     void dispatch(getFilmsWithParameters());
   };
 
-  const isChecked = (value: string) => selectedTypes.includes(value);
+  const handleClear = () => {
+    dispatch(updateFilters({ type: '', page: 1 })); // Clear selected type
+    setIsOpen(false);
+    void dispatch(getFilmsWithParameters());
+  };
 
   return (
-    <div className='space-y-2'>
+    <div className='space-y-4'>
       <div className='flex items-center space-x-2'>
-        <Checkbox
-          id='movie'
-          checked={isChecked('movie')}
-          onCheckedChange={() => handleCheckboxChange('movie')}
-        />
-        <label htmlFor='movie' className='text-sm font-medium'>
-          Movie
-        </label>
+        <Popover open={isOpen} onOpenChange={(event) => setIsOpen(event)}>
+          <PopoverTrigger asChild>
+            <Button variant='outline'>
+              {selectedType ? `Selected: ${selectedType}` : 'Select Type'}
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className='w-48 p-2'>
+            <Input
+              placeholder='Search types...'
+              value={searchValue}
+              onChange={(event) => setSearchValue(event.target.value)}
+              className='mb-2'
+            />
+            <ScrollArea className='h-40'>
+              <ul className='space-y-1'>
+                {filteredTypes.map((type) => (
+                  <li key={type}>
+                    <Button
+                      variant={selectedType === type ? 'default' : 'ghost'}
+                      className='w-full justify-start'
+                      onClick={() => handleTypeSelect(type)}
+                    >
+                      {type.charAt(0).toUpperCase() + type.slice(1)}
+                    </Button>
+                  </li>
+                ))}
+              </ul>
+            </ScrollArea>
+            <Button variant='outline' className='mt-2 w-full' onClick={handleClear}>
+              Clear
+            </Button>
+          </PopoverContent>
+        </Popover>
       </div>
-      <div className='flex items-center space-x-2'>
-        <Checkbox
-          id='series'
-          checked={isChecked('series')}
-          onCheckedChange={() => handleCheckboxChange('series')}
-        />
-        <label htmlFor='series' className='text-sm font-medium'>
-          Series
-        </label>
-      </div>
-      <div className='flex items-center space-x-2'>
-        <Checkbox
-          id='episode'
-          checked={isChecked('episode')}
-          onCheckedChange={() => handleCheckboxChange('episode')}
-        />
-        <label htmlFor='episode' className='text-sm font-medium'>
-          Episode
-        </label>
-      </div>
-
-      <p className='mt-4 text-sm text-gray-600 dark:text-gray-400'>
-        Selected Types: {selectedTypes.join(', ')}
-      </p>
     </div>
   );
 };
 
-export default TypeCheckboxes;
+export default TypePicker;
