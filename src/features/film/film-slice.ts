@@ -2,8 +2,7 @@ import type {
   IDetailQueryParameters,
   IFilmDataState,
   IFilmDetailData,
-  IFilmState,
-  IQueryParameters
+  IFilmState
 } from '@/lib/types/film';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
