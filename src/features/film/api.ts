@@ -6,25 +6,36 @@ import { BASE_URL } from '@/lib/constants';
 
 const api = axios.create({
   baseURL: BASE_URL,
-  timeout: 100_000,
+  timeout: 10_000,
   headers: {
     'Content-Type': 'application/json',
-    Accept: 'text/plain'
+    Accept: 'application/json'
   }
 });
 
-// Add a request interceptor
+// Add request interceptor
 api.interceptors.request.use(
   (config) => {
-    // Ensure the params object exists
-    const parameters = (config.params as IQueryParameters) || ({} as IQueryParameters);
-
-    parameters.apikey = import.meta.env.VITE_API_KEY as string;
-
+    if (config.params) {
+      // Ensure the params object exists
+      const parameters = (config.params as IQueryParameters) || ({} as IQueryParameters);
+      parameters.apikey = import.meta.env.VITE_API_KEY as string;
+    } else {
+      config.params = { apikey: import.meta.env.VITE_API_KEY as string };
+    }
     return config;
   },
   (error) => {
-    return;
+    return Promise.reject(error instanceof Error ? error : new Error(String(error)));
+  }
+);
+
+// Add response interceptor
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    console.error('API Error:', error);
+    return Promise.reject(error instanceof Error ? error : new Error(String(error)));
   }
 );
 

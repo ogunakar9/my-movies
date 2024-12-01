@@ -50,8 +50,8 @@ export interface DataTableProperties {
   dataProp: IFilmData[];
 }
 export interface IQueryParameters {
-  apikey: string | undefined;
   page: number;
+  apikey?: string | undefined;
   s?: string;
   y?: string;
   type?: string;
@@ -63,7 +63,7 @@ export interface IDetailQueryParameters {
 
 export interface IFilmState {
   query: IQueryParameters;
-  status: 'idle' | 'loading' | 'failed';
+  status: 'idle' | 'loading' | 'failed' | 'success';
   error: string | undefined | null;
   filmData: IFilmDataState;
   selectedFilm: IFilmDetailData;

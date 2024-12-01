@@ -132,7 +132,7 @@ const DataTable: React.FC<DataTableProperties> = ({ dataProp }) => {
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className='h-24 text-center'>
+                <TableCell colSpan={columns?.length} className='h-24 text-center'>
                   No results.
                 </TableCell>
               </TableRow>
