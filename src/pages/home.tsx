@@ -19,9 +19,9 @@ const Home = () => {
   const status = useAppSelector(selectStatus);
   const error = useAppSelector(selectError);
 
-  // useEffect(() => {
-  //   void dispatch(getFilmsWithParameters());
-  // }, [dispatch]);
+  useEffect(() => {
+    void dispatch(getFilmsWithParameters());
+  }, [dispatch]);
 
   if (status === 'loading') return <p>Loading...</p>;
   if (status === 'failed') return <p>Error: {error}</p>;
@@ -30,8 +30,8 @@ const Home = () => {
     <div className='w-full p-4'>
       <GithubCorner title='Get started on GitHub' url='https://www.github.com/ogunakar9' />
       <Filters />
-      {/* {filmData?.Search ? <Table /> : undefined} */}
-      <Table />
+      {filmData?.Search ? <Table /> : undefined}
+      {/* <Table /> */}
     </div>
   );
 };

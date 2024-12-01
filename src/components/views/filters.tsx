@@ -5,8 +5,8 @@ import YearPicker from '@/components/views/year-picker';
 
 const Filters = () => {
   return (
-    <div className='w-full'>
-      <YearPicker onYearSelect={(year) => console.log(year)} />
+    <div className='relative left-[500px] top-[100px] h-[200px] w-full'>
+      <YearPicker />
       <TypePicker />
     </div>
   );
