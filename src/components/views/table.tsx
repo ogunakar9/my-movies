@@ -9,6 +9,7 @@ import {
   getPaginationRowModel,
   useReactTable
 } from '@tanstack/react-table';
+import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -85,6 +86,8 @@ const DataTable: React.FC<DataTableProperties> = ({ dataProp }) => {
     manualPagination: true
   });
 
+  const navigate = useNavigate();
+
   return (
     <div className='w-full'>
       <div className='flex items-center py-4'>
@@ -115,8 +118,9 @@ const DataTable: React.FC<DataTableProperties> = ({ dataProp }) => {
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
+                  className='cursor-pointer'
                   onClick={() => {
-                    console.log('Row clicked:', row.original.imdbID);
+                    navigate(`/film-detail/${row.original.imdbID}`);
                   }}
                 >
                   {row.getVisibleCells().map((cell) => (
