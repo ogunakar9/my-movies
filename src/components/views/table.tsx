@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import type { IFilmData } from '@/lib/types/film';
 import type { ColumnDef } from '@tanstack/react-table';
@@ -29,8 +29,8 @@ interface PaginationState {
 }
 
 const DataTable: React.FC<DataTableProperties> = ({ dataProp }) => {
-  const [filterValue, setFilterValue] = React.useState('');
-  const [paginationState, setPaginationState] = React.useState<PaginationState>({
+  const [filterValue, setFilterValue] = useState('Pokemon');
+  const [paginationState, setPaginationState] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 10
   });
