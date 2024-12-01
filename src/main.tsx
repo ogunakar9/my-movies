@@ -7,6 +7,8 @@ import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import App from '@/app';
+import Detail from '@/pages/detail';
+import NotFoundPage from '@/pages/not-found';
 
 const container = document.querySelector('#root');
 const root = createRoot(container as HTMLElement);
@@ -14,18 +16,18 @@ const root = createRoot(container as HTMLElement);
 const router = createBrowserRouter([
   {
     path: '*',
-    element: <App />,
-    errorElement: <App />
+    element: <NotFoundPage />,
+    errorElement: <NotFoundPage />
   },
   {
     path: '/',
     element: <App />,
-    errorElement: <App />
+    errorElement: <NotFoundPage />
   },
   {
-    path: '/film-detail/:id',
-    element: <App />,
-    errorElement: <App />
+    path: '/film-detail/:imdbID',
+    element: <Detail />,
+    errorElement: <NotFoundPage />
   }
 ]);
 
