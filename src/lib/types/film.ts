@@ -57,8 +57,8 @@ export interface IQueryParameters {
   type?: string;
 }
 export interface IDetailQueryParameters {
-  apikey: string | undefined;
   i: string;
+  apikey?: string;
 }
 
 export interface IFilmState {

@@ -10,6 +10,8 @@ import App from '@/app';
 import Detail from '@/pages/detail';
 import NotFoundPage from '@/pages/not-found';
 
+import RootProvider from './providers/root';
+
 const container = document.querySelector('#root');
 const root = createRoot(container as HTMLElement);
 
@@ -33,6 +35,8 @@ const router = createBrowserRouter([
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <RootProvider>
+      <RouterProvider router={router} />
+    </RootProvider>
   </React.StrictMode>
 );
