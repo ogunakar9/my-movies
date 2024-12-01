@@ -131,10 +131,10 @@ const Detail: React.FC<IFilmDetailData> = () => {
                 <div>
                   <p className='font-semibold'>IMDb Rating:</p>
                   <Rating
-                    rating={Number(movie.imdbRating) / 2}
+                    rating={(Number.parseInt(movie.imdbRating) / 10) * 5}
                     totalStars={5}
                     size={24}
-                    variant='default'
+                    variant='yellow'
                     disabled={true}
                   />
                   <p className='text-muted-foreground'>{movie.imdbRating}</p>
