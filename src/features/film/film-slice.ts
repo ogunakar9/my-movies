@@ -14,7 +14,6 @@ import { type RootState } from '../../app/store';
 
 const initialState: IFilmState = {
   query: {
-    apikey: import.meta.env.VITE_API_KEY as string,
     s: 'Pokemon',
     y: '',
     type: '',
@@ -66,6 +65,11 @@ export const getFilmDetail = createAsyncThunk(
   }
 );
 
+const handlePending = (state: IFilmState) => {
+  state.status = 'loading';
+  state.error = undefined;
+};
+
 export const filmSlice = createSlice({
   name: 'films',
   initialState,
@@ -85,27 +89,23 @@ export const filmSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getFilmsWithParameters.pending, (state) => {
-        state.status = 'loading';
-      })
+      .addCase(getFilmsWithParameters.pending, handlePending)
       .addCase(getFilmsWithParameters.fulfilled, (state, action) => {
         state.status = 'success';
         state.filmData = action.payload;
       })
       .addCase(getFilmsWithParameters.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.payload as string;
+        state.error = typeof action.payload === 'string' ? action.payload : 'An error occurred';
       })
-      .addCase(getFilmDetail.pending, (state) => {
-        state.status = 'loading';
-      })
+      .addCase(getFilmDetail.pending, handlePending)
       .addCase(getFilmDetail.fulfilled, (state, action) => {
         state.status = 'success';
         state.selectedFilm = action.payload;
       })
       .addCase(getFilmDetail.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.payload as string;
+        state.error = typeof action.payload === 'string' ? action.payload : 'An error occurred';
       });
   }
 });
