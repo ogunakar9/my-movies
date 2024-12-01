@@ -1,6 +1,6 @@
 const config = {
   metadata: {
-    title: 'Movie Viewer',
+    title: 'VIDEOBOOK',
     description:
       'A React.js Web App, SPA, website or landing page with TypeScript, Shadcn/ui, TailwindCSS, Vite, SWC, ESLint, Husky ',
     keywords:
