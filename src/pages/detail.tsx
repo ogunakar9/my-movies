@@ -20,52 +20,52 @@ const Detail: React.FC = () => {
   const [data, setData] = React.useState<IFilmDetailData[]>([]);
 
   const dispatch = useAppDispatch();
-  const selectedFilm = useAppSelector(selectSelectedFilm);
+  // const selectedFilm = useAppSelector(selectSelectedFilm);
   const status = useAppSelector(selectStatus);
   const error = useAppSelector(selectError);
 
-  // const movie = {
-  //   Title: 'Pokémon 3 the Movie: Spell of the Unown',
-  //   Year: '2000',
-  //   Rated: 'G',
-  //   Released: '06 Apr 2001',
-  //   Runtime: '93 min',
-  //   Genre: 'Animation, Action, Adventure',
-  //   Director: 'Kunihiko Yuyama',
-  //   Writer: 'Takeshi Shudô, Hideki Sonoda, Satoshi Tajiri',
-  //   Actors: 'Veronica Taylor, Eric Stuart, Rica Matsumoto',
-  //   Plot: 'In the town of Greenfield, a young, lonely girls dreams and wishes are brought into reality by a collective of reality-warping Pokémon.',
-  //   Language: 'Japanese',
-  //   Country: 'Japan',
-  //   Awards: 'N/A',
-  //   Poster:
-  //     'https://m.media-amazon.com/images/M/MV5BMTk0NzM3MDY1OV5BMl5BanBnXkFtZTYwNTkwODc5._V1_SX300.jpg',
-  //   Ratings: [
-  //     {
-  //       Source: 'Internet Movie Database',
-  //       Value: '5.8/10'
-  //     }
-  //   ],
-  //   Metascore: 'N/A',
-  //   imdbRating: '5.8',
-  //   imdbVotes: '15,597',
-  //   imdbID: 'tt0235679',
-  //   Type: 'movie',
-  //   DVD: 'N/A',
-  //   BoxOffice: '$17,052,128',
-  //   Production: 'N/A',
-  //   Website: 'N/A',
-  //   Response: 'True'
-  // };
+  const selectedFilm = {
+    Title: 'Pokémon 3 the Movie: Spell of the Unown',
+    Year: '2000',
+    Rated: 'G',
+    Released: '06 Apr 2001',
+    Runtime: '93 min',
+    Genre: 'Animation, Action, Adventure',
+    Director: 'Kunihiko Yuyama',
+    Writer: 'Takeshi Shudô, Hideki Sonoda, Satoshi Tajiri',
+    Actors: 'Veronica Taylor, Eric Stuart, Rica Matsumoto',
+    Plot: 'In the town of Greenfield, a young, lonely girls dreams and wishes are brought into reality by a collective of reality-warping Pokémon.',
+    Language: 'Japanese',
+    Country: 'Japan',
+    Awards: 'N/A',
+    Poster:
+      'https://m.media-amazon.com/images/M/MV5BMTk0NzM3MDY1OV5BMl5BanBnXkFtZTYwNTkwODc5._V1_SX300.jpg',
+    Ratings: [
+      {
+        Source: 'Internet Movie Database',
+        Value: '5.8/10'
+      }
+    ],
+    Metascore: 'N/A',
+    imdbRating: '5.8',
+    imdbVotes: '15,597',
+    imdbID: 'tt0235679',
+    Type: 'movie',
+    DVD: 'N/A',
+    BoxOffice: '$17,052,128',
+    Production: 'N/A',
+    Website: 'N/A',
+    Response: 'True'
+  };
 
-  useEffect(() => {
-    if (imdbID) {
-      void dispatch(getFilmDetail({ i: imdbID }));
-    }
-  }, [dispatch, imdbID]);
+  // useEffect(() => {
+  //   if (imdbID) {
+  //     void dispatch(getFilmDetail({ i: imdbID }));
+  //   }
+  // }, [dispatch, imdbID]);
 
-  if (status === 'loading') return <p>Loading...</p>;
-  if (status === 'failed') return <p>Error: {error}</p>;
+  // if (status === 'loading') return <p>Loading...</p>;
+  // if (status === 'failed') return <p>Error: {error}</p>;
 
   return (
     <div className='flex flex-col items-center p-6'>

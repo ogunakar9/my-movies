@@ -30,11 +30,9 @@ export const getFilmsWithParameters = createAsyncThunk(
   'films/fetchFilms',
   async (_, { getState, rejectWithValue }) => {
     try {
-      // Get the current query parameters from Redux state
       const state = getState() as RootState;
       const query = state.films.query;
 
-      // Perform the API request
       const response = await api.get('/', { params: query });
       return response.data as IFilmDataState;
     } catch (error: unknown) {
@@ -42,7 +40,6 @@ export const getFilmsWithParameters = createAsyncThunk(
         const errorResponse = (error as { response?: { data?: unknown } })?.response;
         return rejectWithValue(errorResponse?.data ?? error.message);
       }
-
       return rejectWithValue('An unknown error occurred');
     }
   }
@@ -59,7 +56,6 @@ export const getFilmDetail = createAsyncThunk(
         const errorResponse = (error as { response?: { data?: unknown } })?.response;
         return rejectWithValue(errorResponse?.data ?? error.message);
       }
-
       return rejectWithValue('An unknown error occurred');
     }
   }
@@ -74,17 +70,8 @@ export const filmSlice = createSlice({
   name: 'films',
   initialState,
   reducers: {
-    updateSearchInput: (state, action: PayloadAction<string>) => {
-      state.query.s = action.payload;
-    },
-    updateTypeSelector: (state, action: PayloadAction<string>) => {
-      state.query.type = action.payload;
-    },
-    updateYearSelector: (state, action: PayloadAction<string>) => {
-      state.query.y = action.payload;
-    },
-    updatePage: (state, action: PayloadAction<number>) => {
-      state.query.page = action.payload;
+    updateFilters: (state, action: PayloadAction<Partial<IFilmState['query']>>) => {
+      state.query = { ...state.query, ...action.payload };
     }
   },
   extraReducers: (builder) => {
@@ -110,8 +97,7 @@ export const filmSlice = createSlice({
   }
 });
 
-export const { updateSearchInput, updateTypeSelector, updateYearSelector, updatePage } =
-  filmSlice.actions;
+export const { updateFilters } = filmSlice.actions;
 
 export const selectFilters = (state: RootState) => state.films.query;
 export const selectFilmData = (state: RootState) => state.films.filmData;
