@@ -13,7 +13,7 @@ const YearPicker: React.FC<YearPickerProperties> = ({ onYearSelect }) => {
   const currentYear = new Date().getFullYear();
   const [searchValue, setSearchValue] = useState('');
   const [selectedYear, setSelectedYear] = useState<number | undefined>();
-  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const years = Array.from({ length: 100 }, (_, index) => currentYear - index);
   const filteredYears = years.filter((year) => year.toString().includes(searchValue));

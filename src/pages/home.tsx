@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
 import GithubCorner from '@/components/github-corner';
+import Filters from '@/components/views/filters';
 import Table from '@/components/views/table';
-import YearPicker from '@/components/views/year-picker';
 import api from '@/features/film/api';
 import { type IFilmData, type IFilmDataState } from '@/lib/types/film';
 
@@ -113,7 +113,7 @@ const Home = () => {
   return (
     <div className='w-full p-4'>
       <GithubCorner title='Get started on GitHub' url='https://www.github.com/ogunakar9' />
-      <YearPicker onYearSelect={(year) => console.log(year)} />
+      <Filters />
       <Table dataProp={data} />
     </div>
   );
