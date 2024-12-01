@@ -28,8 +28,6 @@ const TypeCheckboxes: React.FC = () => {
     void dispatch(getFilmsWithParameters());
   };
 
-  console.log(filters);
-
   const isChecked = (value: string) => selectedTypes.includes(value);
 
   return (
