@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import * as React from 'react';
 
 import { cn } from '@/lib/utils';
@@ -26,10 +24,9 @@ const CardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDiv
 );
 CardHeader.displayName = 'CardHeader';
 
-const CardTitle = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLHeadingElement>>(
+const CardTitle = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...properties }, reference) => (
-    // eslint-disable-next-line jsx-a11y/heading-has-content
-    <h3
+    <div
       ref={reference}
       className={cn('text-2xl font-semibold leading-none tracking-tight', className)}
       {...properties}
@@ -38,12 +35,15 @@ const CardTitle = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HT
 );
 CardTitle.displayName = 'CardTitle';
 
-const CardDescription = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement>
->(({ className, ...properties }, reference) => (
-  <p ref={reference} className={cn('text-sm text-muted-foreground', className)} {...properties} />
-));
+const CardDescription = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...properties }, reference) => (
+    <div
+      ref={reference}
+      className={cn('text-sm text-muted-foreground', className)}
+      {...properties}
+    />
+  )
+);
 CardDescription.displayName = 'CardDescription';
 
 const CardContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(

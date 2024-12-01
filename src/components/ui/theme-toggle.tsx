@@ -1,5 +1,3 @@
-'use client';
-
 import * as React from 'react';
 
 import { Laptop, MoonStar, Sun } from 'lucide-react';
@@ -11,8 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
-
-import { useTheme } from '../../providers/theme';
+import { useTheme } from '@/providers/theme';
 
 export default function ThemeToggle() {
   const { setTheme } = useTheme();
