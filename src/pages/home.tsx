@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import GithubCorner from '@/components/github-corner';
-import Filters from '@/components/views/filters';
 import Table from '@/components/views/table';
 import { getFilmsWithParameters, selectError, selectStatus } from '@/features/film/slice';
 

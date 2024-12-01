@@ -86,7 +86,8 @@ const DataTable: React.FC = () => {
     <div className='size-full'>
       {filmData.Search?.length ? (
         <span>
-          There are {filmData.totalResults} results for {filters.s} {filters.type} at {filters.y}.
+          There are {filmData.totalResults} results for {filters.s} {filters.type}
+          {filters.y ? ` at ${filters.y}` : ''}
         </span>
       ) : undefined}
       <div className='flex items-center gap-4 py-4'>
