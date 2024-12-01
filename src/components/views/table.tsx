@@ -17,6 +17,7 @@ import {
   TableHeader,
   TableRow
 } from '@/components/ui/table';
+import Filters from '@/components/views/filters';
 import {
   getFilmsWithParameters,
   selectFilmData,
@@ -82,7 +83,7 @@ const DataTable: React.FC = () => {
   }, [debouncedSearch]);
 
   return (
-    <div className='w-full'>
+    <div className='size-full'>
       {filmData.Search?.length ? (
         <span>There are {filmData.totalResults} results.</span>
       ) : undefined}
@@ -93,6 +94,7 @@ const DataTable: React.FC = () => {
           value={searchValue}
           className='max-w-sm'
         />
+        <Filters />
       </div>
       <div className='rounded-md border'>
         <Table>

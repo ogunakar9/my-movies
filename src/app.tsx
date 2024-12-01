@@ -6,13 +6,13 @@ import Home from '@/pages/home';
 
 function App() {
   return (
-    <>
+    <div className='grid h-screen grid-rows-[auto_1fr_auto]'>
       <Navbar />
-      <main className='flex h-full flex-col items-center justify-center'>
+      <main className='flex h-full flex-col items-center'>
         <Home />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
 

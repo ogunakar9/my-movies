@@ -19,9 +19,8 @@ const Home = () => {
   if (status === 'failed') return <p>Error: {error}</p>;
 
   return (
-    <div className='w-full p-4'>
+    <div className='h-full w-full p-4'>
       <GithubCorner title='Get started on GitHub' url='https://www.github.com/ogunakar9' />
-      <Filters />
       <Table />
     </div>
   );
