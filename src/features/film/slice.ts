@@ -22,7 +22,8 @@ const initialState: IFilmState = {
   status: 'idle',
   filmData: {} as IFilmDataState,
   error: undefined,
-  selectedFilm: {} as IFilmDetailData
+  selectedFilm: {} as IFilmDetailData,
+  hasNextPage: false
 };
 
 // Async Thunks
@@ -80,6 +81,13 @@ export const filmSlice = createSlice({
       .addCase(getFilmsWithParameters.fulfilled, (state, action) => {
         state.status = 'success';
         state.filmData = action.payload;
+
+        // Calculate hasNextPage
+        const totalResults = action.payload.totalResults || 0;
+        const itemsPerPage = 10;
+        const currentPage = state.query.page;
+
+        state.hasNextPage = currentPage * itemsPerPage < Number(totalResults);
       })
       .addCase(getFilmsWithParameters.rejected, (state, action) => {
         state.status = 'failed';
@@ -104,5 +112,6 @@ export const selectFilmData = (state: RootState) => state.films.filmData;
 export const selectSelectedFilm = (state: RootState) => state.films.selectedFilm;
 export const selectStatus = (state: RootState) => state.films.status;
 export const selectError = (state: RootState) => state.films.error;
+export const selectHasNextPage = (state: RootState) => state.films.hasNextPage;
 
 export default filmSlice.reducer;

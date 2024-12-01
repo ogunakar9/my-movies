@@ -1,15 +1,34 @@
 import React, { useState } from 'react';
 
+import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { Checkbox } from '@/components/ui/checkbox';
+import { getFilmsWithParameters, selectFilters, updateFilters } from '@/features/film/slice';
 
 const TypeCheckboxes: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const filters = useAppSelector(selectFilters);
   const [selectedTypes, setSelectedTypes] = useState<string[]>(['movie', 'series', 'episode']);
 
   const handleCheckboxChange = (value: string) => {
-    setSelectedTypes((previous) =>
-      previous.includes(value) ? previous.filter((type) => type !== value) : [...previous, value]
-    );
+    setSelectedTypes((previous) => {
+      const newSelections = previous.includes(value)
+        ? previous.filter((type) => type !== value)
+        : [...previous, value];
+
+      dispatch(
+        updateFilters({
+          type: newSelections.join(','),
+          page: 1
+        })
+      );
+
+      return newSelections;
+    });
+
+    void dispatch(getFilmsWithParameters());
   };
+
+  console.log(filters);
 
   const isChecked = (value: string) => selectedTypes.includes(value);
 

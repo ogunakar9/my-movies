@@ -67,4 +67,5 @@ export interface IFilmState {
   error: string | undefined | null;
   filmData: IFilmDataState;
   selectedFilm: IFilmDetailData;
+  hasNextPage: boolean;
 }
