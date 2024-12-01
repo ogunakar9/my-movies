@@ -85,9 +85,11 @@ const DataTable: React.FC = () => {
   return (
     <div className='size-full'>
       {filmData.Search?.length ? (
-        <span>There are {filmData.totalResults} results.</span>
+        <span>
+          There are {filmData.totalResults} results for {filters.s} {filters.type} at {filters.y}.
+        </span>
       ) : undefined}
-      <div className='flex items-center py-4'>
+      <div className='flex items-center gap-4 py-4'>
         <Input
           placeholder='Filter by title...'
           onChange={handleChange}
@@ -134,15 +136,21 @@ const DataTable: React.FC = () => {
           </TableBody>
         </Table>
       </div>
-      <div className='flex items-center justify-end space-x-2 py-4'>
-        <Button variant='outline' onClick={() => handlePageChange(-1)} disabled={filters.page <= 1}>
-          Previous
-        </Button>
-        <span>{filters.page}</span>
-        <Button variant='outline' onClick={() => handlePageChange(1)} disabled={!hasNextPage}>
-          Next
-        </Button>
-      </div>
+      {filmData.Search?.length ? (
+        <div className='flex items-center justify-end space-x-2 py-4'>
+          <Button
+            variant='outline'
+            onClick={() => handlePageChange(-1)}
+            disabled={filters.page <= 1}
+          >
+            Previous
+          </Button>
+          <span>{filters.page}</span>
+          <Button variant='outline' onClick={() => handlePageChange(1)} disabled={!hasNextPage}>
+            Next
+          </Button>
+        </div>
+      ) : undefined}
     </div>
   );
 };

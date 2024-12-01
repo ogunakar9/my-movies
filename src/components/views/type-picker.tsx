@@ -40,7 +40,7 @@ const TypePicker: React.FC = () => {
           <PopoverTrigger asChild>
             <Button variant='outline'>
               {selectedType
-                ? `Selected: ${selectedType.charAt(0).toUpperCase() + selectedType.slice(1)}`
+                ? `Selected Type: ${selectedType.charAt(0).toUpperCase() + selectedType.slice(1)}`
                 : 'Select Type'}
             </Button>
           </PopoverTrigger>
