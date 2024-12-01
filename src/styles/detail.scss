@@ -1,71 +1,78 @@
 @import '../../styles/variables.scss';
 @import '../../styles//mixins.scss';
 
-.details {
-  width: calc(100vw - 100px);
-  height: calc(100vh - 100px);
-  padding: $spacing-50;
-  @include displayFlex(nowrap, flex-start, flex-start);
-  gap: $spacing-50;
+// This file is just to display hypothetical detail page styles for the movie details if customizations were needed beyond tailwindcss
+// This file is not used in the project
+// Employs BEM Methodology
+// Ordinarily I would just use tailwindcss for this project since it is a small project and the styles are not complex
+// But I am including this file to show that I can write custom styles if needed
+// SCSS variables and mixins are also not used
 
-  @media screen and (max-width: $medium) {
-    @include displayFlex(nowrap, flex-start, center, column);
-    padding: $spacing-8;
-    width: calc(100vw - 150px);
-  }
+// .details {
+//   width: calc(100vw - 100px);
+//   height: calc(100vh - 100px);
+//   padding: $spacing-50;
+//   @include displayFlex(nowrap, flex-start, flex-start);
+//   gap: $spacing-50;
 
-  &__img {
-    @include displayFlex(nowrap, center, flex-start);
-    flex-basis: 20%;
-    border-radius: $spacing-8;
+//   @media screen and (max-width: $medium) {
+//     @include displayFlex(nowrap, flex-start, center, column);
+//     padding: $spacing-8;
+//     width: calc(100vw - 150px);
+//   }
 
-    &__src {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      border-radius: $spacing-8;
-    }
-  }
+//   &__img {
+//     @include displayFlex(nowrap, center, flex-start);
+//     flex-basis: 20%;
+//     border-radius: $spacing-8;
 
-  &__txt {
-    @include displayFlex(nowrap, flex-start, flex-start);
-    height: 100%;
-    gap: $spacing-50;
-    flex-basis: 60%;
+//     &__src {
+//       width: 100%;
+//       height: 100%;
+//       object-fit: contain;
+//       border-radius: $spacing-8;
+//     }
+//   }
 
-    @media screen and (max-width: $medium) {
-      max-width: calc(100vw - 200px);
-      gap: $spacing-16;
-    }
+//   &__txt {
+//     @include displayFlex(nowrap, flex-start, flex-start);
+//     height: 100%;
+//     gap: $spacing-50;
+//     flex-basis: 60%;
 
-    &__single {
-      @include displayFlex(nowrap, flex-start, flex-start, column);
-      gap: $spacing-16;
+//     @media screen and (max-width: $medium) {
+//       max-width: calc(100vw - 200px);
+//       gap: $spacing-16;
+//     }
 
-      &__title {
-        font-size: $fs-1;
-        font-weight: 600;
-        color: $dark-grey;
-        width: max-content;
-      }
+//     &__single {
+//       @include displayFlex(nowrap, flex-start, flex-start, column);
+//       gap: $spacing-16;
 
-      &__desc {
-        font-size: $fs-1;
-        font-weight: 400;
-        color: $dark-grey;
-        text-align: start;
-      }
-    }
+//       &__title {
+//         font-size: $fs-1;
+//         font-weight: 600;
+//         color: $dark-grey;
+//         width: max-content;
+//       }
 
-    &__rating {
-      @include displayFlex(nowrap, flex-start, center, column);
-      gap: 14px;
-    }
-  }
+//       &__desc {
+//         font-size: $fs-1;
+//         font-weight: 400;
+//         color: $dark-grey;
+//         text-align: start;
+//       }
+//     }
 
-  &__error {
-    height: 100vh;
-    width: 100%;
-    @include displayFlex(nowrap, center, center);
-  }
-}
+//     &__rating {
+//       @include displayFlex(nowrap, flex-start, center, column);
+//       gap: 14px;
+//     }
+//   }
+
+//   &__error {
+//     height: 100vh;
+//     width: 100%;
+//     @include displayFlex(nowrap, center, center);
+//   }
+// }
