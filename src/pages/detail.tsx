@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Rating } from '@/components/ui/rating';
 import { Separator } from '@/components/ui/separator';
 import api from '@/features/film/api';
 import { type IFilmDetailData } from '@/lib/types/film';
@@ -129,6 +130,13 @@ const Detail: React.FC<IFilmDetailData> = () => {
                 </div>
                 <div>
                   <p className='font-semibold'>IMDb Rating:</p>
+                  <Rating
+                    rating={Number(movie.imdbRating) / 2}
+                    totalStars={5}
+                    size={24}
+                    variant='default'
+                    disabled={true}
+                  />
                   <p className='text-muted-foreground'>{movie.imdbRating}</p>
                 </div>
                 <div>
